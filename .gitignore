@@ -1,0 +1,36 @@
+# Vite
+dist/
+dist-ssr/
+*.local
+.vite/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+*.tsbuildinfo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Coverage
+coverage/
+.nyc_output/
+
