@@ -6,6 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig({
+  base: '/Personal_Portfolio/',
   resolve: {
     alias: {
       '@': new URL('./src', import.meta.url).pathname,
