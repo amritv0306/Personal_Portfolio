@@ -43,7 +43,7 @@ function loadCertificates(section: HTMLElement): void {
   const certsGrid = section.querySelector('#certs-grid');
 
   // Example: If you have certificates, they would be added like this:
-  const exampleCertificates = [
+  const exampleCertificates: Array<{ name: string; issuer: string; date: string; image: string }> = [
     // {
     //   name: 'AI/ML Fundamentals',
     //   issuer: 'Coursera',
@@ -55,8 +55,8 @@ function loadCertificates(section: HTMLElement): void {
   if (exampleCertificates.length > 0 && certsGrid) {
     certsGrid.innerHTML = exampleCertificates
       .map(
-        (cert, idx) => `
-      <div class="card scroll-reveal stagger-${Math.min(idx + 1, 10)}" style="cursor: pointer; overflow: hidden;">
+        (cert, _idx) => `
+      <div class="card scroll-reveal stagger-${Math.min(_idx + 1, 10)}" style="cursor: pointer; overflow: hidden;">
         <div style="width: 100%; height: 200px; background: linear-gradient(135deg, rgba(0,217,255,0.1), rgba(0,217,255,0.05)); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; position: relative;">
           <div style="font-size: 2.5rem;">📜</div>
         </div>

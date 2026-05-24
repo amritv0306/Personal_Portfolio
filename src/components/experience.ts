@@ -24,7 +24,7 @@ export function createExperience(): HTMLElement {
           <!-- Education Timeline -->
           ${education
             .map(
-              (edu, idx) => `
+              (edu, _idx) => `
             <div class="timeline-item scroll-reveal" style="margin-bottom: 32px; position: relative;">
               <!-- Timeline dot -->
               <div style="position: absolute; left: -44px; top: 6px; width: 20px; height: 20px; background: var(--color-accent); border-radius: 50%; border: 3px solid var(--color-bg-primary); box-shadow: 0 0 0 4px var(--color-bg-secondary);"></div>
@@ -50,7 +50,7 @@ export function createExperience(): HTMLElement {
           <!-- Experience Timeline -->
           ${experience
             .map(
-              (exp, idx) => `
+              (exp, _idx) => `
             <div class="timeline-item scroll-reveal" style="margin-bottom: 32px; position: relative;">
               <!-- Timeline dot -->
               <div style="position: absolute; left: -44px; top: 6px; width: 20px; height: 20px; background: var(--color-accent); border-radius: 50%; border: 3px solid var(--color-bg-primary); box-shadow: 0 0 0 4px var(--color-bg-secondary);"></div>
