@@ -13,6 +13,7 @@ export function createSkills(): HTMLElement {
 
   let skillsHTML = `
     <div class="container">
+      <div class="section-tag text-center scroll-reveal">// TECH_STACK</div>
       <h2 class="text-center scroll-reveal mb-3xl">Technical Skills</h2>
 
       <div class="grid-3">
@@ -37,31 +38,6 @@ export function createSkills(): HTMLElement {
   });
 
   skillsHTML += `
-      </div>
-
-      <div class="mt-4xl">
-        <h3 class="text-center scroll-reveal mb-2xl">Proficiency Levels</h3>
-        <div class="grid-2">
-          <div class="scroll-reveal">
-            <h5 style="margin-bottom: 12px;">Expert</h5>
-            <p class="text-secondary">Python, JavaScript/TypeScript, React, Flask, SQL, Git</p>
-          </div>
-
-          <div class="scroll-reveal">
-            <h5 style="margin-bottom: 12px;">Intermediate</h5>
-            <p class="text-secondary">Machine Learning, NLP, GCP, Data Engineering, CSS/HTML</p>
-          </div>
-
-          <div class="scroll-reveal">
-            <h5 style="margin-bottom: 12px;">Familiar</h5>
-            <p class="text-secondary">Vite, Tailwind, Docker, Jupyter Notebooks, GenAI APIs</p>
-          </div>
-
-          <div class="scroll-reveal">
-            <h5 style="margin-bottom: 12px;">Learning</h5>
-            <p class="text-secondary">Advanced ML ops, Cloud Architecture, System Design</p>
-          </div>
-        </div>
       </div>
     </div>
   `;

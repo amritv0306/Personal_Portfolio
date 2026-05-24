@@ -19,10 +19,10 @@ import { createContact } from './components/contact';
 // Import utilities
 import {
   setupScrollReveal,
-  setupHoverAnimation,
   observeElements,
   debounce,
   staggerAnimation,
+  setupButtonFeedback,
 } from './utils/animations';
 
 /**
@@ -92,15 +92,15 @@ function setupAnimations(): void {
   // Setup scroll reveal animations
   setupScrollReveal();
 
+  // Setup button feedback ripples
+  setupButtonFeedback();
+
   // Setup stagger animations for elements
   const staggerElements = document.querySelectorAll('[class*="stagger-"]');
   const staggerArray = Array.from(staggerElements) as HTMLElement[];
   if (staggerArray.length > 0) {
     staggerAnimation(staggerArray, 'animate-fade-in-up', 50);
   }
-
-  // Setup hover animations on cards
-  setupHoverAnimation('.card', 'animate-glow');
 
   // Setup skill tag hover effects
   const skillTags = document.querySelectorAll('.skill-tag');

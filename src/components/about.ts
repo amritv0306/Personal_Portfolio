@@ -16,53 +16,70 @@ export function createAbout(): HTMLElement {
     <div class="container">
       <div class="section-inner">
         <div>
-          <h2 class="scroll-reveal">About Me</h2>
+          <div class="section-tag scroll-reveal">// ABOUT_ME</div>
+          <h2 class="scroll-reveal">A builder at the intersection of <span class="text-accent">engineering</span> and <span class="text-accent">intelligence</span>.</h2>
+
           <p class="mt-xl scroll-reveal">
-            ${personal.bio}
+            I'm a Chemical Engineering undergrad at NIT Warangal who fell in love with code,
+            and now I split my time between solving classical engineering problems and shipping
+            modern software. My focus sits where <strong>full-stack development</strong>,
+            <strong>AI/ML</strong>, and <strong>data engineering</strong> overlap — building
+            tools that move data, generate insight, and quietly do useful work in the background.
+          </p>
+
+          <p class="mt-lg scroll-reveal">
+            Recently, I designed an end-to-end ETL + GenAI pipeline on GCP that grew a content
+            channel past 1,000 viewers in a month, built a 90%-accurate fake news classifier
+            with NLTK and spaCy, and shipped a Flask-based job portal during a Python developer
+            internship. I care about clean architecture, fast feedback loops, and code that
+            other people can actually read.
+          </p>
+
+          <p class="mt-lg scroll-reveal">
+            Right now I'm looking for internships and collaborations where I can keep learning
+            in the open — especially around applied ML, generative AI, and data platforms.
           </p>
 
           <div class="mt-2xl">
-            <h4 class="mb-xl scroll-reveal">Quick Facts</h4>
-            <ul style="list-style: none; display: grid; gap: 12px;">
+            <div class="section-tag scroll-reveal">// QUICK_FACTS</div>
+            <ul class="quick-facts mt-lg">
               <li class="scroll-reveal">
-                <strong style="color: var(--color-accent);">📍 Location:</strong>
-                <span class="text-secondary"> ${personal.location}</span>
+                <span class="fact-key">location</span>
+                <span class="fact-val">${personal.location}</span>
               </li>
               <li class="scroll-reveal">
-                <strong style="color: var(--color-accent);">🎓 Education:</strong>
-                <span class="text-secondary"> ${education[0].field} @ ${education[0].school.split(',')[0]}</span>
+                <span class="fact-key">education</span>
+                <span class="fact-val">${education[0].field} @ ${education[0].school.split(',')[0]}</span>
               </li>
               <li class="scroll-reveal">
-                <strong style="color: var(--color-accent);">💼 Status:</strong>
-                <span class="text-secondary"> Seeking internship opportunities</span>
+                <span class="fact-key">status</span>
+                <span class="fact-val">Open to internships</span>
               </li>
               <li class="scroll-reveal">
-                <strong style="color: var(--color-accent);">⚡ Interests:</strong>
-                <span class="text-secondary"> AI/ML, Full Stack Dev, Data Pipelines</span>
+                <span class="fact-key">interests</span>
+                <span class="fact-val">AI/ML · Full Stack · Data Pipelines</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div>
-          <h3 class="mb-2xl scroll-reveal">Featured Highlights</h3>
-          <div class="grid-1 gap-lg">
-            <div class="card scroll-reveal">
-              <div style="font-size: 2.5rem; margin-bottom: 12px;">🚀</div>
-              <h5 style="margin-bottom: 8px;">Fast Learner</h5>
-              <p style="font-size: 0.9rem;">Quickly grasp new concepts and technologies. Built production systems in weeks.</p>
+          <div class="section-tag scroll-reveal">// HIGHLIGHTS</div>
+          <div class="grid-1 gap-lg mt-lg">
+            <div class="card highlight-card scroll-reveal">
+              <div class="highlight-icon">🚀</div>
+              <div>
+                <h5>Fast Learner</h5>
+                <p>Ship production code in weeks, not months.</p>
+              </div>
             </div>
 
-            <div class="card scroll-reveal">
-              <div style="font-size: 2.5rem; margin-bottom: 12px;">🔧</div>
-              <h5 style="margin-bottom: 8px;">Full Stack</h5>
-              <p style="font-size: 0.9rem;">Comfortable across the entire stack - frontend, backend, ML, and data engineering.</p>
-            </div>
-
-            <div class="card scroll-reveal">
-              <div style="font-size: 2.5rem; margin-bottom: 12px;">🎯</div>
-              <h5 style="margin-bottom: 8px;">Impact Driven</h5>
-              <p style="font-size: 0.9rem;">Focus on building solutions that matter. Grew projects to 1000+ users.</p>
+            <div class="card highlight-card scroll-reveal">
+              <div class="highlight-icon">🎯</div>
+              <div>
+                <h5>Impact Driven</h5>
+                <p>Grew a project to 1,000+ users in 30 days.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -73,7 +90,6 @@ export function createAbout(): HTMLElement {
   return about;
 }
 
-/* Add this CSS for grid-1 */
 const style = document.createElement('style');
 style.textContent = `
   .grid-1 {
