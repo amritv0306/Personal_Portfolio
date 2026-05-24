@@ -3,7 +3,7 @@
    ============================================ */
 
 import { portfolioData } from '../data';
-import { fetchGitHubRepos, sortRepos, GitHubRepo } from '../utils/github';
+import { fetchGitHubRepos, sortRepos } from '../utils/github';
 
 export async function createProjects(): Promise<HTMLElement> {
   const { projects: portfolioProjects } = portfolioData;
@@ -16,43 +16,61 @@ export async function createProjects(): Promise<HTMLElement> {
   // Start with portfolio projects
   projectsSection.innerHTML = `
     <div class="container">
-      <h2 class="text-center scroll-reveal mb-3xl">Featured Projects</h2>
+      <div class="section-header scroll-reveal">
+        <h2 class="text-center">Featured Projects</h2>
+        <p class="text-center text-secondary" style="margin-top: var(--space-md); font-size: 1.05rem;">
+          Showcase of my most impactful work combining technical excellence with real-world impact
+        </p>
+      </div>
 
-      <div class="grid-auto" id="projects-grid">
+      <div class="grid-auto" id="projects-grid" style="margin-bottom: var(--space-4xl);">
         ${portfolioProjects
           .map(
             (project, idx) => `
           <div class="card project-card scroll-reveal stagger-${Math.min(idx + 1, 10)}">
-            <div style="margin-bottom: 12px; height: 100px; background: linear-gradient(135deg, rgba(0,217,255,0.1), rgba(0,217,255,0.05)); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+            <div class="project-icon" style="margin-bottom: var(--space-lg);">
               <div style="font-size: 2.5rem;">💡</div>
             </div>
 
-            <h4 style="margin-bottom: 8px;">${project.title}</h4>
-            <p class="text-secondary" style="margin-bottom: 12px; font-size: 0.9rem;">${project.description}</p>
+            <div style="flex: 1;">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--space-sm);">
+                <h4 style="margin: 0;">${project.title}</h4>
+              </div>
 
-            <div style="margin-bottom: 12px; font-size: 0.8rem; color: var(--color-text-tertiary);">
-              ${project.period} • ${project.type}
+              <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <span style="font-size: var(--body-xs); color: var(--color-text-tertiary); font-weight: 500;">${project.period}</span>
+                <span style="font-size: var(--body-xs); color: var(--color-text-tertiary);">•</span>
+                <span style="font-size: var(--body-xs); color: var(--color-text-tertiary);">${project.type}</span>
+              </div>
+
+              <p class="text-secondary" style="margin-bottom: var(--space-lg); line-height: 1.6;">${project.description}</p>
+
+              <div style="margin-bottom: var(--space-lg);">
+                <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+                  ${project.skills
+                    .slice(0, 5)
+                    .map((skill) => `<span class="skill-tag">${skill}</span>`)
+                    .join('')}
+                </div>
+              </div>
+
+              <ul style="list-style: none; font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-lg); padding: 0;">
+                ${project.highlights
+                  .slice(0, 3)
+                  .map((h) => `<li style="margin-bottom: var(--space-sm);">
+                    <span style="color: var(--color-accent); margin-right: var(--space-sm);">→</span>${h}
+                  </li>`)
+                  .join('')}
+              </ul>
             </div>
 
-            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px;">
-              ${project.skills
-                .slice(0, 4)
-                .map((skill) => `<span class="skill-tag" style="font-size: 0.75rem;">${skill}</span>`)
-                .join('')}
+            <div style="margin-top: var(--space-lg); padding-top: var(--space-lg); border-top: 1px solid rgba(0, 217, 255, 0.1);">
+              ${
+                project.github
+                  ? `<a href="${project.github}" target="_blank" class="project-link">View on GitHub <span style="margin-left: 4px;">→</span></a>`
+                  : `<span class="text-tertiary" style="font-size: 0.9rem;">Repository coming soon</span>`
+              }
             </div>
-
-            <ul style="list-style: none; font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 12px;">
-              ${project.highlights
-                .slice(0, 2)
-                .map((h) => `<li style="margin-bottom: 6px;">✓ ${h}</li>`)
-                .join('')}
-            </ul>
-
-            ${
-              project.github
-                ? `<a href="${project.github}" target="_blank" class="text-accent" style="font-weight: 600;">View on GitHub →</a>`
-                : `<span class="text-tertiary" style="font-size: 0.9rem;">GitHub link coming soon</span>`
-            }
           </div>
         `
           )
@@ -75,40 +93,48 @@ export async function createProjects(): Promise<HTMLElement> {
 
     if (githubContainer) {
       const githubHTML = `
-        <div style="margin-top: 48px;">
-          <h3 class="scroll-reveal mb-2xl">Latest GitHub Projects</h3>
-          <div class="grid-auto" style="gap: 16px;">
+        <div style="margin-top: var(--space-4xl); border-top: 2px solid rgba(0, 217, 255, 0.1); padding-top: var(--space-4xl);">
+          <div class="scroll-reveal" style="margin-bottom: var(--space-3xl);">
+            <h3>Latest GitHub Projects</h3>
+            <p class="text-secondary" style="margin-top: var(--space-md); font-size: 1rem;">
+              Recent work spanning full stack development, data engineering, and machine learning
+            </p>
+          </div>
+
+          <div class="grid-auto">
             ${sortedRepos
               .map(
                 (repo, idx) => `
               <div class="card project-card scroll-reveal stagger-${Math.min(idx + 1, 6)}">
-                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
-                  <h5>${repo.name}</h5>
-                  ${
-                    repo.stars > 0
-                      ? `<span class="skill-tag" style="font-size: 0.75rem;">⭐ ${repo.stars}</span>`
-                      : ''
-                  }
+                <div style="margin-bottom: var(--space-lg);">
+                  <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--space-md);">
+                    <h5 style="margin: 0;">${repo.name}</h5>
+                    ${
+                      repo.stars > 0
+                        ? `<span class="skill-tag" style="font-size: 0.75rem; font-weight: 600;">⭐ ${repo.stars}</span>`
+                        : ''
+                    }
+                  </div>
+
+                  <p class="text-secondary" style="margin: 0; line-height: 1.6;">
+                    ${repo.description || 'Repository'}
+                  </p>
                 </div>
 
-                <p class="text-secondary" style="font-size: 0.9rem; margin-bottom: 12px; line-height: 1.5;">
-                  ${repo.description || 'No description'}
-                </p>
-
-                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px;">
+                <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-lg);">
                   ${
                     repo.language
                       ? `<span class="skill-tag" style="font-size: 0.75rem;">${repo.language}</span>`
                       : ''
                   }
                   ${repo.topics
-                    .slice(0, 2)
+                    .slice(0, 3)
                     .map((topic) => `<span class="skill-tag" style="font-size: 0.75rem;">${topic}</span>`)
                     .join('')}
                 </div>
 
-                <a href="${repo.url}" target="_blank" class="text-accent" style="font-weight: 600; font-size: 0.9rem;">
-                  View Repository →
+                <a href="${repo.url}" target="_blank" class="project-link">
+                  View Repository <span style="margin-left: 4px;">→</span>
                 </a>
               </div>
             `
