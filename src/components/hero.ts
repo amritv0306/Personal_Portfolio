@@ -27,7 +27,7 @@ export function createHero(): HTMLElement {
         <div class="hero-avatar-ring"></div>
         <div class="hero-avatar-ring ring-2"></div>
         <div class="hero-avatar">
-          <img src="/profile.jpg" alt="${personal.name}" loading="eager" />
+          <img src="${import.meta.env.BASE_URL}profile.jpg" alt="${personal.name}" loading="eager" />
           <div class="hero-avatar-overlay"></div>
         </div>
         <div class="hero-avatar-status">
