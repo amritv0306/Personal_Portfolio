@@ -59,7 +59,6 @@ export function animateCounter(
 ): void {
   let current = 0;
   const increment = target / (duration / 16);
-  const startTime = Date.now();
 
   const update = () => {
     current += increment;
@@ -75,7 +74,8 @@ export function animateCounter(
 }
 
 /**
- * Trigger animation on hover
+ * Trigger animation on hover — removes the class when the cursor leaves
+ * so infinite animations don't get stuck on.
  */
 export function setupHoverAnimation(
   selector: string,
@@ -88,7 +88,7 @@ export function setupHoverAnimation(
       el.classList.add(animationClass);
     });
 
-    el.addEventListener('animationend', () => {
+    el.addEventListener('mouseleave', () => {
       el.classList.remove(animationClass);
     });
   });
