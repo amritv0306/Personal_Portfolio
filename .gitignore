@@ -3,6 +3,7 @@ dist/
 dist-ssr/
 *.local
 .vite/
+vite.config.ts.timestamp-*.mjs
 
 # Node
 node_modules/
