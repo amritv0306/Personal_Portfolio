@@ -35,17 +35,6 @@ export function createContact(): HTMLElement {
             <p style="font-size: 0.9rem; color: var(--color-accent);">View Profile</p>
           </a>
 
-          <a href="${personal.github}" target="_blank" class="card scroll-reveal" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-            <div style="font-size: 2.5rem; margin-bottom: 12px;">💻</div>
-            <h5 style="margin-bottom: 8px;">GitHub</h5>
-            <p style="font-size: 0.9rem; color: var(--color-accent);">@amritv0306</p>
-          </a>
-
-          <a href="tel:${personal.phone}" class="card scroll-reveal" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-            <div style="font-size: 2.5rem; margin-bottom: 12px;">📱</div>
-            <h5 style="margin-bottom: 8px;">Phone</h5>
-            <p style="font-size: 0.9rem; color: var(--color-accent);">${personal.phone}</p>
-          </a>
         </div>
 
         <!-- CTA Button -->
@@ -62,7 +51,7 @@ export function createContact(): HTMLElement {
     <footer style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding: 32px 0; margin-top: 32px;">
       <div class="container" style="text-align: center;">
         <p class="text-tertiary" style="font-size: 0.9rem;">
-          © ${new Date().getFullYear()} Amrit Verma. Built with ❤️ using Vite, TypeScript & modern CSS.
+          © ${new Date().getFullYear()} Amrit Verma. Built with Vite, TypeScript & modern CSS.
         </p>
         <p class="text-tertiary" style="font-size: 0.85rem; margin-top: 12px;">
           <a href="#hero" style="color: var(--color-accent);">Back to top ↑</a>

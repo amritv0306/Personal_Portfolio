@@ -30,10 +30,6 @@ export function createHero(): HTMLElement {
           <img src="${import.meta.env.BASE_URL}profile.jpg" alt="${personal.name}" loading="eager" />
           <div class="hero-avatar-overlay"></div>
         </div>
-        <div class="hero-avatar-status">
-          <span class="status-dot"></span>
-          <span class="status-text">ONLINE</span>
-        </div>
       </div>
 
       <div class="hero-subtitle animate-fade-in-down">
