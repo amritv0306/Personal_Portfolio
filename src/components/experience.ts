@@ -5,15 +5,16 @@
 import { portfolioData } from '../data';
 
 export function createExperience(): HTMLElement {
-  const { experience, education } = portfolioData;
+  const { experience } = portfolioData;
 
   const experienceSection = document.createElement('section');
   experienceSection.id = 'experience';
   experienceSection.className = 'section';
 
-  let experienceHTML = `
+  experienceSection.innerHTML = `
     <div class="container">
-      <h2 class="text-center scroll-reveal mb-3xl">Experience & Education</h2>
+      <div class="section-tag text-center scroll-reveal">// EXPERIENCE</div>
+      <h2 class="text-center scroll-reveal mb-3xl">Experience</h2>
 
       <div style="max-width: 900px; margin: 0 auto;">
         <!-- Timeline -->
@@ -21,48 +22,29 @@ export function createExperience(): HTMLElement {
           <!-- Timeline line -->
           <div style="position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--color-accent), transparent);"></div>
 
-          <!-- Education Timeline -->
-          ${education
-            .map(
-              (edu, _idx) => `
-            <div class="timeline-item scroll-reveal" style="margin-bottom: 32px; position: relative;">
-              <!-- Timeline dot -->
-              <div style="position: absolute; left: -44px; top: 6px; width: 20px; height: 20px; background: var(--color-accent); border-radius: 50%; border: 3px solid var(--color-bg-primary); box-shadow: 0 0 0 4px var(--color-bg-secondary);"></div>
-
-              <div class="card">
-                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
-                  <h4 style="margin: 0;">${edu.degree}</h4>
-                  <span style="font-size: 0.85rem; color: var(--color-accent);">${edu.period}</span>
-                </div>
-
-                <p style="margin: 0 0 8px 0; color: var(--color-text-secondary);">${edu.school}</p>
-                <p style="margin: 0 0 12px 0; font-size: 0.9rem; color: var(--color-text-secondary);">${edu.field} • GPA: ${edu.gpa}</p>
-
-                <ul style="list-style: none; font-size: 0.9rem;">
-                  ${edu.highlights.map((h) => `<li style="margin-bottom: 6px;">✓ ${h}</li>`).join('')}
-                </ul>
-              </div>
-            </div>
-          `
-            )
-            .join('')}
-
-          <!-- Experience Timeline -->
           ${experience
             .map(
-              (exp, _idx) => `
+              (exp) => `
             <div class="timeline-item scroll-reveal" style="margin-bottom: 32px; position: relative;">
               <!-- Timeline dot -->
               <div style="position: absolute; left: -44px; top: 6px; width: 20px; height: 20px; background: var(--color-accent); border-radius: 50%; border: 3px solid var(--color-bg-primary); box-shadow: 0 0 0 4px var(--color-bg-secondary);"></div>
 
               <div class="card">
-                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
-                  <h4 style="margin: 0;">${exp.title}</h4>
-                  <span style="font-size: 0.85rem; color: var(--color-accent);">${exp.period}</span>
+                <div style="display: flex; gap: 14px; align-items: flex-start; margin-bottom: 8px;">
+                  <span class="org-icon" data-monogram="${exp.monogram}">
+                    <img src="${import.meta.env.BASE_URL}logos/${exp.logo}" alt="${exp.company} logo" loading="lazy"
+                         onerror="this.parentElement.classList.add('org-icon-fallback'); this.remove();" />
+                  </span>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 8px;">
+                      <h4 style="margin: 0;">${exp.title}</h4>
+                      <span style="font-size: 0.85rem; color: var(--color-accent); white-space: nowrap;">${exp.period}</span>
+                    </div>
+                    <p style="margin: 4px 0 0 0; color: var(--color-text-secondary); font-weight: 600;">${exp.company}</p>
+                    <p style="margin: 2px 0 0 0; font-size: 0.9rem; color: var(--color-text-tertiary);">${exp.location} • ${exp.type}</p>
+                  </div>
                 </div>
-
-                <p style="margin: 0 0 4px 0; color: var(--color-text-secondary); font-weight: 600;">${exp.company}</p>
-                <p style="margin: 0 0 12px 0; font-size: 0.9rem; color: var(--color-text-tertiary);">${exp.location} • ${exp.type}</p>
+                <div style="margin-bottom: 12px;"></div>
 
                 <ul style="list-style: none; font-size: 0.9rem; margin-bottom: 12px;">
                   ${exp.highlights.map((h) => `<li style="margin-bottom: 6px;">✓ ${h}</li>`).join('')}
@@ -80,8 +62,6 @@ export function createExperience(): HTMLElement {
       </div>
     </div>
   `;
-
-  experienceSection.innerHTML = experienceHTML;
 
   return experienceSection;
 }

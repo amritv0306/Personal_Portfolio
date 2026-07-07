@@ -5,7 +5,7 @@
 import { portfolioData } from '../data';
 
 export function createAbout(): HTMLElement {
-  const { personal, education } = portfolioData;
+  const { personal } = portfolioData;
 
   const about = document.createElement('section');
   about.id = 'about';
@@ -20,24 +20,16 @@ export function createAbout(): HTMLElement {
           <h2 class="scroll-reveal">A builder at the intersection of <span class="text-accent">engineering</span> and <span class="text-accent">intelligence</span>.</h2>
 
           <p class="mt-xl scroll-reveal">
-            I'm a Chemical Engineering undergrad at NIT Warangal who fell in love with code,
-            and now I split my time between solving classical engineering problems and shipping
-            modern software. My focus sits where <strong>full-stack development</strong>,
-            <strong>AI/ML</strong>, and <strong>data engineering</strong> overlap — building
-            tools that move data, generate insight, and quietly do useful work in the background.
+            I'm an <strong>AI Engineer</strong> working in Bangalore, and a graduate of
+            <strong>NIT Warangal</strong>. I build intelligent systems that move data,
+            generate insight, and quietly do useful work in the background — with a focus
+            on <strong>AI/ML</strong>, <strong>computer vision</strong>, and
+            <strong>data engineering</strong>.
           </p>
 
           <p class="mt-lg scroll-reveal">
-            Recently, I designed an end-to-end ETL + GenAI pipeline on GCP that grew a content
-            channel past 1,000 viewers in a month, built a 90%-accurate fake news classifier
-            with NLTK and spaCy, and shipped a Flask-based job portal during a Python developer
-            internship. I care about clean architecture, fast feedback loops, and code that
-            other people can actually read.
-          </p>
-
-          <p class="mt-lg scroll-reveal">
-            Right now I'm looking for internships and collaborations where I can keep learning
-            in the open — especially around applied ML, generative AI, and data platforms.
+            I'm open to collaborating on any kind of cool project that has the potential
+            to solve a real challenge. If you're building something interesting, let's talk.
           </p>
 
           <div class="mt-2xl">
@@ -49,15 +41,11 @@ export function createAbout(): HTMLElement {
               </li>
               <li class="scroll-reveal">
                 <span class="fact-key">education</span>
-                <span class="fact-val">${education[0].field} @ ${education[0].school.split(',')[0]}</span>
-              </li>
-              <li class="scroll-reveal">
-                <span class="fact-key">status</span>
-                <span class="fact-val">Open to internships</span>
+                <span class="fact-val">B.Tech @ NIT Warangal</span>
               </li>
               <li class="scroll-reveal">
                 <span class="fact-key">interests</span>
-                <span class="fact-val">AI/ML · Full Stack · Data Pipelines</span>
+                <span class="fact-val">AI/ML · Computer Vision · GenAI · Robotics</span>
               </li>
             </ul>
           </div>

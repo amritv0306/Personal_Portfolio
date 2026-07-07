@@ -27,9 +27,9 @@ export async function createProjects(): Promise<HTMLElement> {
         ${portfolioProjects
           .map(
             (project, idx) => `
-          <div class="card project-card scroll-reveal stagger-${Math.min(idx + 1, 10)}">
+          <div class="card project-card featured-project scroll-reveal stagger-${Math.min(idx + 1, 10)}" data-project-id="${project.id}" style="cursor: pointer;">
             <div class="project-icon" style="margin-bottom: var(--space-lg);">
-              <div style="font-size: 2.5rem;">💡</div>
+              <div style="font-size: 2.5rem;">${project.id === 'invisible-magic' ? '🪞' : '💡'}</div>
             </div>
 
             <div style="flex: 1;">
@@ -64,11 +64,12 @@ export async function createProjects(): Promise<HTMLElement> {
               </ul>
             </div>
 
-            <div style="margin-top: var(--space-lg); padding-top: var(--space-lg); border-top: 1px solid rgba(0, 217, 255, 0.1);">
+            <div style="margin-top: var(--space-lg); padding-top: var(--space-lg); border-top: 1px solid rgba(74, 158, 255, 0.12); display: flex; gap: var(--space-xl); flex-wrap: wrap;">
+              <a href="${import.meta.env.BASE_URL}project.html?id=${project.id}" class="project-link">Read case study <span style="margin-left: 4px;">→</span></a>
               ${
                 project.github
-                  ? `<a href="${project.github}" target="_blank" class="project-link">View on GitHub <span style="margin-left: 4px;">→</span></a>`
-                  : `<span class="text-tertiary" style="font-size: 0.9rem;">Repository coming soon</span>`
+                  ? `<a href="${project.github}" target="_blank" class="project-link" onclick="event.stopPropagation()">View on GitHub <span style="margin-left: 4px;">→</span></a>`
+                  : ''
               }
             </div>
           </div>
@@ -85,6 +86,15 @@ export async function createProjects(): Promise<HTMLElement> {
     </div>
   `;
 
+  // Make featured cards fully clickable → detail page
+  projectsSection.querySelectorAll('.featured-project').forEach((card) => {
+    card.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) return; // let inner links behave normally
+      const id = (card as HTMLElement).dataset.projectId;
+      if (id) window.location.href = `${import.meta.env.BASE_URL}project.html?id=${id}`;
+    });
+  });
+
   // Fetch and add GitHub repos
   const githubRepos = await fetchGitHubRepos('amritv0306');
   if (githubRepos.length > 0) {
@@ -93,7 +103,7 @@ export async function createProjects(): Promise<HTMLElement> {
 
     if (githubContainer) {
       const githubHTML = `
-        <div style="margin-top: var(--space-4xl); border-top: 2px solid rgba(0, 217, 255, 0.1); padding-top: var(--space-4xl);">
+        <div style="margin-top: var(--space-4xl); border-top: 2px solid rgba(74, 158, 255, 0.1); padding-top: var(--space-4xl);">
           <div class="scroll-reveal" style="margin-bottom: var(--space-3xl);">
             <h3>Latest GitHub Projects</h3>
             <p class="text-secondary" style="margin-top: var(--space-md); font-size: 1rem;">

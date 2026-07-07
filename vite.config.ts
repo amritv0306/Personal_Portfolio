@@ -21,6 +21,10 @@ export default defineConfig({
     outDir: 'dist',
     minify: 'esbuild',
     rollupOptions: {
+      input: {
+        main: `${__dirname}/index.html`,
+        project: `${__dirname}/project.html`,
+      },
       output: {
         manualChunks: {
           'github-api': ['src/utils/github.ts'],

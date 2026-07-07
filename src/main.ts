@@ -13,6 +13,7 @@ import { createAbout } from './components/about';
 import { createSkills } from './components/skills';
 import { createProjects } from './components/projects';
 import { createExperience } from './components/experience';
+import { createConferences } from './components/conferences';
 import { createCertifications } from './components/certifications';
 import { createContact } from './components/contact';
 
@@ -64,6 +65,9 @@ async function initApp(): Promise<void> {
 
     // Add experience section
     appContainer.appendChild(createExperience());
+
+    // Add conferences section
+    appContainer.appendChild(createConferences());
 
     // Add certifications section
     appContainer.appendChild(createCertifications());
@@ -183,7 +187,7 @@ function addScrolledNavbarStyle(): void {
   style.textContent = `
     .navbar.scrolled {
       background: rgba(10, 10, 10, 0.8);
-      border-bottom-color: rgba(0, 217, 255, 0.1);
+      border-bottom-color: rgba(74, 158, 255, 0.1);
     }
 
     .app-container {
@@ -224,5 +228,5 @@ if (document.readyState === 'loading') {
 addScrolledNavbarStyle();
 
 // Log portfolio info
-console.log('%c✨ Amrit Verma Portfolio ✨', 'color: #00d9ff; font-size: 16px; font-weight: bold;');
+console.log('%c✨ Amrit Verma Portfolio ✨', 'color: #4a9eff; font-size: 16px; font-weight: bold;');
 console.log('%cBuilt with Vite + TypeScript + Modern CSS', 'color: #a0a0a0; font-size: 12px;');
